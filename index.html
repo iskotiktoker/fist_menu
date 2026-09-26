@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0b">
+  <title>ALTYN Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <a class="brand" href="#top">
+    <span class="logo">A</span>
+
+    <span>
+      <b>ALTYN</b>
+      <small>RESTAURANT MENU</small>
+    </span>
+  </a>
+
+  <div class="top-actions">
+
+    <div class="langs">
+      <button data-lang="kg">KG</button>
+      <button class="active" data-lang="ru">RU</button>
+      <button data-lang="en">EN</button>
+    </div>
+
+    <button class="cart-top" id="openCart">
+      🛒
+      <span id="cartCount">0</span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<main id="top">
+
+  <section class="hero container">
+
+    <div class="hero-text">
+
+      <p class="eyebrow" data-i18n="eyebrow">
+        ВКУС, КОТОРЫЙ ЗАПОМИНАЕТСЯ
+      </p>
+
+      <h1>
+        ALTYN<br>
+        MENU
+      </h1>
+
+      <p class="lead" data-i18n="lead">
+        Современное меню с любимыми блюдами, салатами,
+        десертами, напитками и выгодными комбо.
+      </p>
+
+      <div class="hero-info">
+        <span>⏱ 15–25 мин</span>
+        <span>⭐ 4.9</span>
+        <span>🍽 <b id="dishCountHero">64</b></span>
+      </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <img id="heroImage" alt="Фирменное блюдо">
+
+      <div class="hero-overlay">
+
+        <span class="badge" data-i18n="hit">
+          ХИТ
+        </span>
+
+        <h2 id="heroName"></h2>
+
+        <div class="hero-price">
+
+          <b id="heroPrice"></b>
+
+          <button id="heroAdd">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="controls container">
+
+    <div class="search">
+
+      <span>⌕</span>
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Поиск блюд..."
+      >
+
+      <button id="clearSearch">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="filters">
+
+      <button
+        class="active"
+        data-filter="all"
+        data-i18n="all">
+        Все
+      </button>
+
+      <button
+        data-filter="popular"
+        data-i18n="popular">
+        Популярное
+      </button>
+
+      <button
+        data-filter="favorites"
+        data-i18n="favorites">
+        Избранное
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="menu container">
+
+    <aside class="sidebar">
+
+      <p data-i18n="categories">
+        Категории
+      </p>
+
+      <div id="categoryList"></div>
+
+    </aside>
+
+
+    <div class="menu-main">
+
+      <div
+        class="mobile-categories"
+        id="mobileCategories">
+      </div>
+
+
+      <div class="section-title">
+
+        <h2 data-i18n="menu">
+          Меню
+        </h2>
+
+        <span id="resultsCount"></span>
+
+      </div>
+
+
+      <div
+        class="grid"
+        id="menuGrid">
+      </div>
+
+
+      <div
+        class="empty hidden"
+        id="emptyState">
+
+        <div>🍽</div>
+
+        <h3 data-i18n="nothing">
+          Ничего не найдено
+        </h3>
+
+        <p data-i18n="tryAgain">
+          Попробуйте другой поиск или категорию.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="features container">
+
+    <article>
+
+      <span>⚡</span>
+
+      <div>
+
+        <h3 data-i18n="fast">
+          Быстро
+        </h3>
+
+        <p data-i18n="fastText">
+          Большинство заказов готовим за 15–25 минут.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article>
+
+      <span>🥬</span>
+
+      <div>
+
+        <h3 data-i18n="fresh">
+          Свежие продукты
+        </h3>
+
+        <p data-i18n="freshText">
+          Готовим из свежих ингредиентов каждый день.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article>
+
+      <span>💳</span>
+
+      <div>
+
+        <h3 data-i18n="payment">
+          Удобная оплата
+        </h3>
+
+        <p data-i18n="paymentText">
+          Оплатите заказ удобным способом у кассы.
+        </p>
+
+      </div>
+
+    </article>
+
+  </section>
+
+</main>
+
+
+
+<button
+  class="floating-cart"
+  id="floatingCart">
+
+  🛒
+
+  <span data-i18n="cart">
+    Корзина
+  </span>
+
+  <b id="floatingTotal">
+    0 сом
+  </b>
+
+</button>
+
+
+
+<div
+  class="overlay"
+  id="dishOverlay">
+
+  <div class="modal">
+
+    <button
+      class="close"
+      id="closeDish">
+      ×
+    </button>
+
+
+    <img
+      id="modalImage"
+      alt="">
+
+
+    <div class="modal-content">
+
+      <span
+        class="category-label"
+        id="modalCategory">
+      </span>
+
+
+      <div class="modal-title-row">
+
+        <h2 id="modalName"></h2>
+
+        <button
+          class="fav big"
+          id="modalFav">
+          ♡
+        </button>
+
+      </div>
+
+
+      <p id="modalDescription"></p>
+
+
+      <div class="ingredients">
+
+        <b data-i18n="ingredients">
+          Состав
+        </b>
+
+        <p id="modalIngredients"></p>
+
+      </div>
+
+
+      <div class="stats">
+
+        <span>
+
+          <small data-i18n="weight">
+            Вес
+          </small>
+
+          <b id="modalWeight"></b>
+
+        </span>
+
+
+        <span>
+
+          <small data-i18n="calories">
+            Ккал
+          </small>
+
+          <b id="modalCalories"></b>
+
+        </span>
+
+
+        <span>
+
+          <small data-i18n="time">
+            Время
+          </small>
+
+          <b id="modalTime"></b>
+
+        </span>
+
+      </div>
+
+
+      <div class="modal-bottom">
+
+        <strong id="modalPrice"></strong>
+
+        <button
+          class="primary"
+          id="modalAdd"
+          data-i18n="addToCart">
+
+          Добавить в корзину
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div
+  class="drawer-overlay"
+  id="cartOverlay">
+
+  <aside class="cart-drawer">
+
+    <div class="cart-head">
+
+      <h2 data-i18n="cart">
+        Корзина
+      </h2>
+
+      <button
+        class="close"
+        id="closeCart">
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="cartItems"
+      class="cart-items">
+    </div>
+
+
+    <div class="cart-summary">
+
+      <div>
+
+        <span data-i18n="total">
+          Итого
+        </span>
+
+        <strong id="cartTotal">
+          0 сом
+        </strong>
+
+      </div>
+
+
+      <button
+        class="primary"
+        id="checkoutBtn"
+        data-i18n="checkout">
+
+        Оформить заказ
+
+      </button>
+
+
+      <small data-i18n="demo">
+        Демо-версия: заказ не отправляется на сервер.
+      </small>
+
+    </div>
+
+  </aside>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
