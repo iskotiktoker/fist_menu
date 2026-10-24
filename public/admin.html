@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>ALTYN — управление</title><link rel="stylesheet" href="admin.css"></head>
+<body>
+<header><a class="brand" href="/">ALTYN <small>Управление</small></a><span id="identity"></span></header>
+<main>
+  <p id="notice" role="status" aria-live="polite"></p>
+  <section id="loginPanel" class="panel narrow">
+    <h1>Вход для сотрудников</h1><p>Права определяются вашей учётной записью.</p>
+    <form id="loginForm"><label>Email или логин<input name="username" autocomplete="username" required maxlength="254"></label><label>Пароль<input name="password" type="password" autocomplete="current-password" required maxlength="128"></label><button class="primary" type="submit">Войти</button></form>
+    <p class="muted">Первый вход владельца настраивается через переменные окружения Netlify. Открытой регистрации нет.</p>
+  </section>
+  <section id="workspace" hidden>
+    <nav class="tabs" aria-label="Разделы управления"><button data-tab="menu" class="selected">Блюда</button><button data-tab="settings" data-owner hidden>Ресторан</button><button data-tab="users" data-owner hidden>Сотрудники</button><button data-tab="audit" data-owner hidden>Журнал</button><button id="logout">Выйти</button></nav>
+    <section id="tab-menu">
+      <div class="section-head"><div><h1>Меню</h1><p id="roleHelp"></p></div><button id="newDish" class="primary" data-owner hidden>+ Добавить блюдо</button></div>
+      <div class="toolbar"><label class="search-label">Поиск блюда<input id="dishSearch" type="search" placeholder="Название или номер"></label><button id="reloadMenu">Обновить</button><label class="check" data-owner hidden><input id="includeArchived" type="checkbox">Показать скрытые</label></div>
+      <div id="dishList" class="dish-list"></div>
+    </section>
+    <section id="tab-settings" hidden>
+      <h1>Ресторан и доставка</h1>
+      <form id="settingsForm" class="panel">
+        <h2>Контакты</h2><label>Адрес (можно оставить пустым)<input name="address" maxlength="300"></label><label>Ссылка ресторана в 2ГИС<input name="mapUrl" type="url" placeholder="https://…"></label><label>Телефон для звонка<input name="phone" type="tel" required></label><label>WhatsApp для заказов (только цифры)<input name="whatsappNumber" inputmode="numeric" required pattern="[0-9]{7,15}"></label>
+        <h2>Стоимость доставки, сом</h2><div class="pair"><label>По городу<input name="city" type="number" min="0" max="100000" step="1" required></label><label>За город<input name="outside" type="number" min="0" max="100000" step="1" required></label></div>
+        <h2>Расписание по Бишкеку (UTC+6)</h2><p>Укажите интервалы, например 09:00-00:00. Несколько интервалов разделяйте запятой. Пустая строка означает выходной.</p>
+        <h3>Работа ресторана</h3><div id="hoursEditor" class="hours-editor"></div>
+        <h3>Приём заказов на доставку</h3><div id="deliveryHoursEditor" class="hours-editor"></div>
+        <button type="submit" class="primary">Сохранить настройки</button>
+      </form>
+      <button id="exportMenu">Скачать копию меню и настроек</button>
+    </section>
+    <section id="tab-users" hidden>
+      <h1>Сотрудники</h1><p>Администраторы меняют только наличие блюд. Отключение доступа и смена пароля завершают их текущие сессии.</p>
+      <div id="userList"></div>
+      <form id="createUserForm" class="panel narrow"><h2>Новый администратор</h2><label>Email или логин<input name="username" autocomplete="off" required maxlength="254" placeholder="Например, admin@example.com"></label><label>Пароль (от 8 символов)<input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label><button type="submit" class="primary">Создать учётную запись</button></form>
+      <p class="muted">Пароль владельца меняется через OWNER_PASSWORD_HASH в Netlify. Изменение хеша завершает его текущие сессии.</p>
+    </section>
+    <section id="tab-audit" hidden><div class="section-head"><h1>Последние изменения</h1><button id="reloadAudit">Обновить</button></div><div id="auditList"></div></section>
+  </section>
+</main>
+<dialog id="dishDialog"><form id="dishForm">
+  <div class="section-head"><h2 id="dishEditorTitle">Блюдо</h2><button type="button" id="closeDishEditor" aria-label="Закрыть">×</button></div>
+  <div class="pair"><label>Цена, сом<input name="price" type="number" min="1" max="1000000" step="1" required></label><label>Категория<select name="category" required></select></label></div>
+  <label>Ссылка на фото (HTTPS)<input name="image" type="url" required maxlength="2000"></label>
+  <div id="dishLanguages"></div>
+  <div class="pair"><label>Вес / объём<input name="weight" maxlength="100"></label><label>Калорийность<input name="calories" maxlength="100"></label><label>Время приготовления<input name="time" maxlength="100"></label><label>Острота<select name="spiciness"><option value="">Не указана</option><option value="0">Не острое</option><option value="1">Немного острое</option><option value="2">Острое</option><option value="3">Очень острое</option></select></label></div>
+  <div class="checks"><label class="check"><input name="available" type="checkbox">В наличии</label><label class="check"><input name="popular" type="checkbox">Популярное</label><label class="check"><input name="isNew" type="checkbox">Новинка</label><label class="check"><input name="archived" type="checkbox">Скрыть из меню</label></div>
+  <p class="muted">Состав и аллергены заполняйте по проверенным данным. Пустые поля предлагают клиенту уточнить сведения у персонала. Скрытие блюда можно отменить.</p>
+  <button class="primary" type="submit">Сохранить блюдо</button>
+</form></dialog>
+<dialog id="passwordDialog"><form id="resetPasswordForm"><h2>Новый пароль сотрудника</h2><p id="resetUserLabel"></p><label>Пароль (от 8 символов)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"></label><div class="pair"><button type="button" id="closePasswordEditor">Отмена</button><button type="submit" class="primary">Сохранить</button></div></form></dialog>
+<script src="admin.js"></script>
+</body></html>

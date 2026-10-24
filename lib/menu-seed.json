@@ -1,0 +1,1843 @@
+{
+  "dishes": [
+    {
+      "id": 1,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Фирменный плов",
+        "kg": "Фирмалык палоо",
+        "en": "Signature Plov"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 390,
+      "weight": "220 г",
+      "calories": "260",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 2,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Плов с говядиной",
+        "kg": "Уй эти менен палоо",
+        "en": "Beef Plov"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 420,
+      "weight": "270 г",
+      "calories": "325",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 3,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Казан-кебаб",
+        "kg": "Казан-кебаб",
+        "en": "Kazan Kebab"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 470,
+      "weight": "320 г",
+      "calories": "390",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 4,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Куурдак",
+        "kg": "Куурдак",
+        "en": "Kuurdak"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 450,
+      "weight": "370 г",
+      "calories": "455",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 5,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Манты",
+        "kg": "Манты",
+        "en": "Manti"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 340,
+      "weight": "420 г",
+      "calories": "520",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 6,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Лагман",
+        "kg": "Лагман",
+        "en": "Lagman"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 380,
+      "weight": "220 г",
+      "calories": "585",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 7,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Бешбармак",
+        "kg": "Бешбармак",
+        "en": "Beshbarmak"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 490,
+      "weight": "270 г",
+      "calories": "650",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 8,
+      "category": "main",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Курица с рисом",
+        "kg": "Күрүч менен тоок",
+        "en": "Chicken with Rice"
+      },
+      "desc": {
+        "ru": "Сытное горячее блюдо, приготовленное из свежих продуктов.",
+        "kg": "Жаңы азыктардан даярдалган тойгузуучу ысык тамак.",
+        "en": "A hearty hot dish prepared with fresh ingredients."
+      },
+      "ingredients": null,
+      "price": 360,
+      "weight": "320 г",
+      "calories": "260",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 9,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Стейк из говядины",
+        "kg": "Уй этинен стейк",
+        "en": "Beef Steak"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 620,
+      "weight": "220 г",
+      "calories": "325",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 10,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Шашлык из баранины",
+        "kg": "Кой этинен шашлык",
+        "en": "Lamb Shashlik"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 390,
+      "weight": "270 г",
+      "calories": "390",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 11,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Шашлык из курицы",
+        "kg": "Тоок шашлыгы",
+        "en": "Chicken Shashlik"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 360,
+      "weight": "320 г",
+      "calories": "455",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 12,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Крылышки BBQ",
+        "kg": "BBQ канаттары",
+        "en": "BBQ Wings"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 320,
+      "weight": "370 г",
+      "calories": "520",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 13,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Люля-кебаб",
+        "kg": "Люля-кебаб",
+        "en": "Lula Kebab"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 350,
+      "weight": "420 г",
+      "calories": "585",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 14,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Овощи гриль",
+        "kg": "Гриль жашылчалар",
+        "en": "Grilled Vegetables"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 290,
+      "weight": "220 г",
+      "calories": "650",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 15,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Рёбра BBQ",
+        "kg": "BBQ кабырга",
+        "en": "BBQ Ribs"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 690,
+      "weight": "270 г",
+      "calories": "260",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 16,
+      "category": "grill",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Гриль микс",
+        "kg": "Гриль микс",
+        "en": "Grill Mix"
+      },
+      "desc": {
+        "ru": "Сочное блюдо с гриля с ароматной корочкой и свежим гарниром.",
+        "kg": "Грилде бышкан ширелүү тамак жана жаңы гарнир.",
+        "en": "Juicy grilled dish with a flavorful crust and fresh side."
+      },
+      "ingredients": null,
+      "price": 750,
+      "weight": "320 г",
+      "calories": "325",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 17,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Классический бургер",
+        "kg": "Классикалык бургер",
+        "en": "Classic Burger"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 280,
+      "weight": "220 г",
+      "calories": "390",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 18,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Чизбургер",
+        "kg": "Чизбургер",
+        "en": "Cheeseburger"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 310,
+      "weight": "270 г",
+      "calories": "455",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 19,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Двойной бургер",
+        "kg": "Кош бургер",
+        "en": "Double Burger"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 420,
+      "weight": "320 г",
+      "calories": "520",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 20,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Чикен бургер",
+        "kg": "Тоок бургери",
+        "en": "Chicken Burger"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 300,
+      "weight": "370 г",
+      "calories": "585",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 21,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Картофель фри",
+        "kg": "Фри картошка",
+        "en": "French Fries"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 150,
+      "weight": "420 г",
+      "calories": "650",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 22,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Наггетсы",
+        "kg": "Наггетс",
+        "en": "Chicken Nuggets"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 190,
+      "weight": "220 г",
+      "calories": "260",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 23,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Хот-дог",
+        "kg": "Хот-дог",
+        "en": "Hot Dog"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 180,
+      "weight": "270 г",
+      "calories": "325",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 24,
+      "category": "fastfood",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Бургер BBQ",
+        "kg": "BBQ бургер",
+        "en": "BBQ Burger"
+      },
+      "desc": {
+        "ru": "Сочный фастфуд с овощами и фирменным соусом.",
+        "kg": "Жаңы жашылча жана фирмалык соус менен ширелүү фастфуд.",
+        "en": "Juicy fast food with fresh vegetables and signature sauce."
+      },
+      "ingredients": null,
+      "price": 340,
+      "weight": "320 г",
+      "calories": "390",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 25,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Маргарита",
+        "kg": "Маргарита",
+        "en": "Margherita"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 390,
+      "weight": "220 г",
+      "calories": "455",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 26,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Пепперони",
+        "kg": "Пепперони",
+        "en": "Pepperoni"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 430,
+      "weight": "270 г",
+      "calories": "520",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 27,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "4 сыра",
+        "kg": "4 сыр",
+        "en": "Four Cheese"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 470,
+      "weight": "320 г",
+      "calories": "585",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 28,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "BBQ курица",
+        "kg": "BBQ тоок",
+        "en": "BBQ Chicken"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 450,
+      "weight": "370 г",
+      "calories": "650",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 29,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Мясная",
+        "kg": "Эттүү",
+        "en": "Meat Lovers"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 520,
+      "weight": "420 г",
+      "calories": "260",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 30,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Грибная",
+        "kg": "Козу карындуу",
+        "en": "Mushroom Pizza"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 440,
+      "weight": "220 г",
+      "calories": "325",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 31,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Овощная",
+        "kg": "Жашылчалуу",
+        "en": "Veggie Pizza"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 410,
+      "weight": "270 г",
+      "calories": "390",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 32,
+      "category": "pizza",
+      "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Фирменная ALTYN",
+        "kg": "ALTYN фирмалык",
+        "en": "ALTYN Signature Pizza"
+      },
+      "desc": {
+        "ru": "Пицца на тонком тесте с сыром и ароматным соусом.",
+        "kg": "Жука камырда сыр жана жыпар жыттуу соус менен пицца.",
+        "en": "Thin-crust pizza with melted cheese and aromatic sauce."
+      },
+      "ingredients": null,
+      "price": 580,
+      "weight": "320 г",
+      "calories": "455",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 33,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Цезарь с курицей",
+        "kg": "Тоок менен Цезарь",
+        "en": "Chicken Caesar"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 300,
+      "weight": "220 г",
+      "calories": "520",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 34,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Греческий",
+        "kg": "Грек салаты",
+        "en": "Greek Salad"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 280,
+      "weight": "270 г",
+      "calories": "585",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 35,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Овощной",
+        "kg": "Жашылча салаты",
+        "en": "Garden Salad"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 240,
+      "weight": "320 г",
+      "calories": "650",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 36,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Ачичук",
+        "kg": "Ачичук",
+        "en": "Achichuk"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 230,
+      "weight": "370 г",
+      "calories": "260",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 37,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Тёплый салат",
+        "kg": "Жылуу салат",
+        "en": "Warm Salad"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 320,
+      "weight": "420 г",
+      "calories": "325",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 38,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Салат с авокадо",
+        "kg": "Авокадо салаты",
+        "en": "Avocado Salad"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 350,
+      "weight": "220 г",
+      "calories": "390",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 39,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Куриный салат",
+        "kg": "Тоок салаты",
+        "en": "Chicken Salad"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 330,
+      "weight": "270 г",
+      "calories": "455",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 40,
+      "category": "salads",
+      "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Фирменный салат",
+        "kg": "Фирмалык салат",
+        "en": "Signature Salad"
+      },
+      "desc": {
+        "ru": "Свежий салат с хрустящими овощами и лёгкой заправкой.",
+        "kg": "Кытырак жаңы жашылчалар жана жеңил соус менен салат.",
+        "en": "Fresh salad with crisp vegetables and a light dressing."
+      },
+      "ingredients": null,
+      "price": 370,
+      "weight": "320 г",
+      "calories": "520",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 41,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Шорпо",
+        "kg": "Шорпо",
+        "en": "Shorpo"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 250,
+      "weight": "220 г",
+      "calories": "585",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 42,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Мастава",
+        "kg": "Мастава",
+        "en": "Mastava"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 270,
+      "weight": "270 г",
+      "calories": "650",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 43,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Чечевичный суп",
+        "kg": "Жасмык шорпосу",
+        "en": "Lentil Soup"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 260,
+      "weight": "320 г",
+      "calories": "260",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 44,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Куриный суп",
+        "kg": "Тоок шорпосу",
+        "en": "Chicken Soup"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 280,
+      "weight": "370 г",
+      "calories": "325",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 45,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Том Ям",
+        "kg": "Том Ям",
+        "en": "Tom Yum"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 390,
+      "weight": "420 г",
+      "calories": "390",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 46,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Грибной крем-суп",
+        "kg": "Козу карын крем-шорпосу",
+        "en": "Mushroom Cream Soup"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 310,
+      "weight": "220 г",
+      "calories": "455",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 47,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Суп с фрикадельками",
+        "kg": "Фрикаделька шорпосу",
+        "en": "Meatball Soup"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 290,
+      "weight": "270 г",
+      "calories": "520",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 48,
+      "category": "soups",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Овощной суп",
+        "kg": "Жашылча шорпосу",
+        "en": "Vegetable Soup"
+      },
+      "desc": {
+        "ru": "Горячий ароматный суп для уютного и сытного обеда.",
+        "kg": "Жылуу жана тойгузуучу түшкү тамак үчүн шорпо.",
+        "en": "A hot aromatic soup for a comforting and filling meal."
+      },
+      "ingredients": null,
+      "price": 240,
+      "weight": "320 г",
+      "calories": "585",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 49,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Чизкейк",
+        "kg": "Чизкейк",
+        "en": "Cheesecake"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 280,
+      "weight": "220 г",
+      "calories": "650",
+      "time": "12 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 50,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Тирамису",
+        "kg": "Тирамису",
+        "en": "Tiramisu"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 260,
+      "weight": "270 г",
+      "calories": "260",
+      "time": "16 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 51,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Шоколадный фондан",
+        "kg": "Шоколад фондан",
+        "en": "Chocolate Fondant"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 300,
+      "weight": "320 г",
+      "calories": "325",
+      "time": "20 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 52,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Медовик",
+        "kg": "Медовик",
+        "en": "Honey Cake"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 340,
+      "weight": "370 г",
+      "calories": "390",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 53,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Красный бархат",
+        "kg": "Кызыл бархат",
+        "en": "Red Velvet"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 260,
+      "weight": "420 г",
+      "calories": "455",
+      "time": "12 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 54,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Мороженое",
+        "kg": "Балмуздак",
+        "en": "Ice Cream"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 220,
+      "weight": "220 г",
+      "calories": "520",
+      "time": "16 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 55,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Фруктовая тарелка",
+        "kg": "Мөмө табагы",
+        "en": "Fruit Plate"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 300,
+      "weight": "270 г",
+      "calories": "585",
+      "time": "20 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 56,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Пахлава",
+        "kg": "Пахлава",
+        "en": "Baklava"
+      },
+      "desc": {
+        "ru": "Нежный десерт для сладкого завершения обеда или ужина.",
+        "kg": "Тамакты таттуу аяктоо үчүн назик десерт.",
+        "en": "A delicate dessert for a sweet finish to your meal."
+      },
+      "ingredients": null,
+      "price": 290,
+      "weight": "320 г",
+      "calories": "650",
+      "time": "24 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 57,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Coca-Cola 0.5",
+        "kg": "Coca-Cola 0.5",
+        "en": "Coca-Cola 0.5"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 140,
+      "weight": "250 мл",
+      "calories": "80",
+      "time": "5 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 58,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Домашний лимонад",
+        "kg": "Үй лимонады",
+        "en": "Homemade Lemonade"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 190,
+      "weight": "350 мл",
+      "calories": "105",
+      "time": "5 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 59,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Айран",
+        "kg": "Айран",
+        "en": "Ayran"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 120,
+      "weight": "450 мл",
+      "calories": "130",
+      "time": "5 мин",
+      "popular": true,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 60,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Чай с лимоном",
+        "kg": "Лимон чай",
+        "en": "Lemon Tea"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 160,
+      "weight": "550 мл",
+      "calories": "155",
+      "time": "5 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 61,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Кофе Latte",
+        "kg": "Latte кофе",
+        "en": "Caffè Latte"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 200,
+      "weight": "250 мл",
+      "calories": "180",
+      "time": "5 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 62,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Комбо Бургер",
+        "kg": "Бургер комбо",
+        "en": "Burger Combo"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 420,
+      "weight": "350 мл",
+      "calories": "205",
+      "time": "5 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 63,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Комбо Пицца",
+        "kg": "Пицца комбо",
+        "en": "Pizza Combo"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 650,
+      "weight": "450 мл",
+      "calories": "230",
+      "time": "5 мин",
+      "popular": false,
+      "isNew": false,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    },
+    {
+      "id": 64,
+      "category": "drinks",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=82",
+      "name": {
+        "ru": "Комбо Семейное",
+        "kg": "Үй-бүлөлүк комбо",
+        "en": "Family Combo"
+      },
+      "desc": {
+        "ru": "Освежающий напиток или выгодный набор к вашему заказу.",
+        "kg": "Заказга сергитүүчү суусундук же пайдалуу комбо.",
+        "en": "A refreshing drink or value combo for your order."
+      },
+      "ingredients": null,
+      "price": 990,
+      "weight": "550 мл",
+      "calories": "255",
+      "time": "5 мин",
+      "popular": false,
+      "isNew": true,
+      "available": true,
+      "archived": false,
+      "allergens": null,
+      "spiciness": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "main",
+      "icon": "🍛",
+      "title": {
+        "ru": "Горячие блюда",
+        "kg": "Ысык тамактар",
+        "en": "Main dishes"
+      }
+    },
+    {
+      "id": "grill",
+      "icon": "🔥",
+      "title": {
+        "ru": "Гриль",
+        "kg": "Гриль",
+        "en": "Grill"
+      }
+    },
+    {
+      "id": "fastfood",
+      "icon": "🍔",
+      "title": {
+        "ru": "Бургеры и фастфуд",
+        "kg": "Бургер жана фастфуд",
+        "en": "Burgers & Fast Food"
+      }
+    },
+    {
+      "id": "pizza",
+      "icon": "🍕",
+      "title": {
+        "ru": "Пицца",
+        "kg": "Пицца",
+        "en": "Pizza"
+      }
+    },
+    {
+      "id": "salads",
+      "icon": "🥗",
+      "title": {
+        "ru": "Салаты",
+        "kg": "Салаттар",
+        "en": "Salads"
+      }
+    },
+    {
+      "id": "soups",
+      "icon": "🍲",
+      "title": {
+        "ru": "Супы",
+        "kg": "Шорполор",
+        "en": "Soups"
+      }
+    },
+    {
+      "id": "desserts",
+      "icon": "🍰",
+      "title": {
+        "ru": "Десерты",
+        "kg": "Десерттер",
+        "en": "Desserts"
+      }
+    },
+    {
+      "id": "drinks",
+      "icon": "🥤",
+      "title": {
+        "ru": "Напитки и комбо",
+        "kg": "Суусундуктар жана комбо",
+        "en": "Drinks & Combos"
+      }
+    }
+  ],
+  "restaurant": {
+    "timezone": "Asia/Bishkek",
+    "phone": "+996600000313",
+    "address": "",
+    "mapUrl": "",
+    "hours": {
+      "0": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ],
+      "1": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ],
+      "2": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ],
+      "3": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ],
+      "4": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ],
+      "5": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ],
+      "6": [
+        [
+          "09:00",
+          "00:00"
+        ]
+      ]
+    },
+    "deliveryHours": {
+      "0": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ],
+      "1": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ],
+      "2": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ],
+      "3": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ],
+      "4": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ],
+      "5": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ],
+      "6": [
+        [
+          "10:00",
+          "23:00"
+        ]
+      ]
+    }
+  },
+  "order": {
+    "whatsappNumber": "996600000313",
+    "deliveryFees": {
+      "city": 150,
+      "outside": 200
+    }
+  }
+}

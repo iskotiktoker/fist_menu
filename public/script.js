@@ -52,7 +52,7 @@ const I18N = {
       "Удобная оплата",
 
     paymentText:
-      "Оплатите заказ удобным способом у кассы.",
+      "Реквизиты для оплаты доставки пришлём в WhatsApp.",
 
     cart: "Корзина",
 
@@ -77,8 +77,6 @@ const I18N = {
     checkout:
       "Оформить заказ",
 
-    demo:
-      "Демо-версия: заказ не отправляется на сервер.",
 
     details:
       "Подробнее",
@@ -92,8 +90,6 @@ const I18N = {
     emptyCartText:
       "Добавьте блюда из меню.",
 
-    orderDemo:
-      "Это демо-меню. Подключить реальную отправку заказа можно позже.",
 
     search:
       "Поиск блюд...",
@@ -162,7 +158,7 @@ const I18N = {
       "Ыңгайлуу төлөм",
 
     paymentText:
-      "Заказды кассадан ыңгайлуу ыкма менен төлөңүз.",
+      "Жеткирүү үчүн төлөм маалыматын WhatsApp аркылуу жөнөтөбүз.",
 
     cart:
       "Себет",
@@ -188,8 +184,6 @@ const I18N = {
     checkout:
       "Заказ берүү",
 
-    demo:
-      "Демо версия: заказ серверге жөнөтүлбөйт.",
 
     details:
       "Толук",
@@ -203,8 +197,6 @@ const I18N = {
     emptyCartText:
       "Менюдан тамак кошуңуз.",
 
-    orderDemo:
-      "Бул демо меню. Чыныгы заказ жөнөтүүнү кийин кошсо болот.",
 
     search:
       "Тамак издөө...",
@@ -266,7 +258,7 @@ const I18N = {
       "Easy payment",
 
     paymentText:
-      "Pay for your order conveniently at the cashier.",
+      "We send delivery payment details via WhatsApp.",
 
     cart:
       "Cart",
@@ -292,8 +284,6 @@ const I18N = {
     checkout:
       "Place order",
 
-    demo:
-      "Demo version: the order is not sent to a server.",
 
     details:
       "Details",
@@ -307,8 +297,6 @@ const I18N = {
     emptyCartText:
       "Add dishes from the menu.",
 
-    orderDemo:
-      "This is a demo menu. Real ordering can be connected later.",
 
     search:
       "Search dishes...",
@@ -1416,6 +1404,9 @@ CATEGORIES.forEach(
    СОСТОЯНИЕ САЙТА
 ============================== */
 
+// Shared server data replaces the original static seed on Netlify.
+if (Array.isArray(window.ALTYN_LIVE_MENU)) dishes.splice(0, dishes.length, ...window.ALTYN_LIVE_MENU);
+
 const state = {
 
   lang:
@@ -1601,6 +1592,8 @@ function applyLanguage() {
   renderCart();
 
   renderHero();
+
+  renderMobileExperience();
 
 
   if (
@@ -1892,7 +1885,7 @@ function cardHTML(dish) {
 
   return `
 
-  <article class="card">
+  <article class="card ${isDishAvailable(dish.id) ? "" : "sold-out-card"}">
 
 
     <div
@@ -1902,14 +1895,18 @@ function cardHTML(dish) {
 
       <img
 
-        src="${dish.image}"
+        src="${escapeHtml(optimizedImage(dish.image, 480))}"
+        srcset="${escapeHtml(optimizedImage(dish.image, 240))} 240w, ${escapeHtml(optimizedImage(dish.image, 480))} 480w, ${escapeHtml(optimizedImage(dish.image, 720))} 720w"
+        sizes="(max-width: 520px) 42vw, 210px"
+        decoding="async"
 
-        alt="${dish.name[state.lang]}"
+        alt="${escapeHtml(dish.name[state.lang])}"
 
-        loading="lazy">
+        loading="lazy" width="480" height="360">
 
 
       <div class="card-badges">
+        <span class="mini-badge availability ${isDishAvailable(dish.id) ? "in-stock" : "out-of-stock"}">${t(isDishAvailable(dish.id) ? "available" : "soldOut")}</span>
 
         ${
           dish.popular
@@ -1978,14 +1975,14 @@ function cardHTML(dish) {
 
       <h3>
 
-        ${dish.name[state.lang]}
+        ${escapeHtml(dish.name[state.lang])}
 
       </h3>
 
 
       <p class="card-desc">
 
-        ${dish.desc[state.lang]}
+        ${escapeHtml(dish.desc[state.lang])}
 
       </p>
 
@@ -2018,7 +2015,7 @@ function cardHTML(dish) {
 
             class="add"
 
-            data-add="${dish.id}">
+            data-add="${dish.id}" ${isDishAvailable(dish.id) ? "" : "disabled"} aria-label="${t(isDishAvailable(dish.id) ? "addToCart" : "soldOut")}">
 
             +
 
@@ -2181,10 +2178,15 @@ function renderHero() {
 
   const dish =
     dishes[0];
+  $(".hero-card").classList.toggle("hidden", !dish);
+  if (!dish) return;
 
 
-  $("#heroImage").src =
-    dish.image;
+  $("#heroImage").src = optimizedImage(dish.image, 800);
+  $("#heroImage").srcset = [400, 800, 1200].map(width => `${optimizedImage(dish.image, width)} ${width}w`).join(", ");
+  $("#heroImage").sizes = "(max-width: 520px) 100vw, 520px";
+  $("#heroAdd").disabled = !isDishAvailable(dish.id);
+  $("#heroAdd").setAttribute("aria-label", t(isDishAvailable(dish.id) ? "addToCart" : "soldOut"));
 
 
   $("#heroName").textContent =
@@ -2256,6 +2258,8 @@ function toggleFavorite(id) {
 ============================== */
 
 function addToCart(id) {
+  if (!dishes.some(dish => dish.id === id)) return;
+  if (!isDishAvailable(id)) { showToast(t("soldOut")); return; }
 
   state.cart[id] =
 
@@ -2281,6 +2285,7 @@ function changeQuantity(
   change
 ) {
 
+  if (change > 0 && !isDishAvailable(id)) { showToast(t("soldOut")); return; }
   state.cart[id] =
 
     (
@@ -2365,6 +2370,8 @@ function renderCart() {
 
   const items =
     cartData();
+
+  renderOrderSummary();
 
 
   const count =
@@ -2463,9 +2470,9 @@ function renderCart() {
 
             <img
 
-              src="${dish.image}"
+              src="${escapeHtml(optimizedImage(dish.image, 160))}" loading="lazy" decoding="async" width="80" height="80"
 
-              alt="${dish.name[state.lang]}">
+              alt="${escapeHtml(dish.name[state.lang])}">
 
 
             <div>
@@ -2473,7 +2480,7 @@ function renderCart() {
 
               <h4>
 
-                ${dish.name[state.lang]}
+                ${escapeHtml(dish.name[state.lang])}
 
               </h4>
 
@@ -2483,6 +2490,7 @@ function renderCart() {
                 ${money(dish.price)}
 
               </small>
+              ${!isDishAvailable(dish.id) ? `<small class="out-of-stock">${t("soldOut")}</small>` : ""}
 
 
               <div class="qty">
@@ -2506,7 +2514,7 @@ function renderCart() {
 
                 <button
 
-                  data-plus="${dish.id}">
+                  data-plus="${dish.id}" ${isDishAvailable(dish.id) ? "" : "disabled"} aria-label="${t("addToCart")}">
 
                   +
 
@@ -2650,8 +2658,7 @@ function openDish(
     );
 
 
-  $("#modalImage").src =
-    dish.image;
+  $("#modalImage").src = optimizedImage(dish.image, 900);
 
 
   $("#modalCategory").textContent =
@@ -2669,7 +2676,7 @@ function openDish(
 
 
   $("#modalIngredients").textContent =
-    dish.ingredients[state.lang];
+    dish.ingredients?.[state.lang] || "";
 
 
   $("#modalWeight").textContent =
@@ -2707,6 +2714,8 @@ function openDish(
 
       : "♡";
 
+
+  renderDishFacts(dish);
 
   $("#modalAdd").onclick =
     () => {
@@ -2973,7 +2982,7 @@ $("#clearSearch").onclick =
 $("#heroAdd").onclick =
   () => {
 
-    addToCart(1);
+    if (dishes[0]) addToCart(dishes[0].id);
 
   };
 
@@ -3005,16 +3014,6 @@ $("#closeDish").onclick =
 /* ==============================
    ЗАКАЗ
 ============================== */
-
-$("#checkoutBtn").onclick =
-  () => {
-
-    showToast(
-      t("orderDemo")
-    );
-
-  };
-
 
 /* ==============================
    КЛИК ПО ФОНУ
@@ -3084,4 +3083,365 @@ document.addEventListener(
    ЗАПУСК САЙТА
 ============================== */
 
+/* DELIVERY AND RESTAURANT LIST */
+const orderConfig = window.ALTYN_ORDER_CONFIG || { whatsappNumber: '996600000313', deliveryFees: { city: 150, outside: 200 } };
+let orderMode = 'delivery';
+const orderWords = {
+  orderType: ['Тип заказа', 'Заказдын түрү', 'Order type'],
+  delivery: ['Доставка', 'Жеткирүү', 'Delivery'],
+  restaurant: ['В ресторане', 'Ресторанда', 'At the restaurant'],
+  waiterTitle: ['Покажите список официанту', 'Тизмени официантка көрсөтүңүз', 'Show your list to the waiter'],
+  waiterText: ['Официант примет заказ и уточнит пожелания. Список на сайте сам по себе не оформляет заказ.', 'Официант заказды кабыл алып, каалоолоруңузду тактайт. Сайттагы тизме заказ катары жөнөтүлбөйт.', 'Your waiter will take the order and confirm your preferences. This list does not place an order.'],
+  deliveryDetails: ['Данные для доставки', 'Жеткирүү маалыматы', 'Delivery details'],
+  requiredHint: ['Поля со звёздочкой обязательны.', 'Жылдызча менен белгиленген талаалар милдеттүү.', 'Fields marked with an asterisk are required.'],
+  customerName: ['Имя *', 'Атыңыз *', 'Name *'],
+  customerPhone: ['Телефон *', 'Телефон *', 'Phone *'],
+  address: ['Улица и дом *', 'Көчө жана үй *', 'Street and building *'],
+  apartment: ['Квартира / офис', 'Батир / кеңсе', 'Apartment / office'],
+  entrance: ['Подъезд', 'Кире бериш', 'Entrance'],
+  floor: ['Этаж', 'Кабат', 'Floor'],
+  intercom: ['Домофон', 'Домофон', 'Intercom'],
+  deliveryTime: ['Когда доставить', 'Качан жеткирүү керек', 'Delivery time'],
+  asap: ['Как можно скорее', 'Мүмкүн болушунча тез', 'As soon as possible'],
+  scheduled: ['К указанному времени', 'Көрсөтүлгөн убакта', 'At a requested time'],
+  requestedTime: ['Дата и время по Бишкеку (UTC+6) *', 'Бишкек убактысы боюнча күн жана саат (UTC+6) *', 'Date and time in Bishkek (UTC+6) *'],
+  comment: ['Комментарий к заказу', 'Заказга комментарий', 'Order notes'],
+  commentHint: ['Пожелания к блюдам, ориентир для курьера…', 'Тамакка каалоолор, курьер үчүн багыт…', 'Food preferences, directions for the courier…'],
+  qrOnly: ['Оплата картой / переводом', 'Карта / которуу менен төлөө', 'Card / bank transfer'],
+  paymentAfterOrder: ['После заказа ресторан отправит номер карты или QR-код в WhatsApp. Переведите оплату по этим реквизитам и отправьте чек в том же чате.', 'Заказдан кийин ресторан карта номерин же QR-кодду WhatsApp аркылуу жөнөтөт. Ошол реквизиттерге төлөп, чекти ошол чатка жөнөтүңүз.', 'After receiving your order, the restaurant will send a card number or QR code on WhatsApp. Pay using those details and send your receipt in the same chat.'],
+  deliveryZone: ['Зона доставки *', 'Жеткирүү аймагы *', 'Delivery area *'],
+  chooseZone: ['Выберите зону доставки', 'Жеткирүү аймагын тандаңыз', 'Choose a delivery area'],
+  cityZone: ['По городу — 150 сом', 'Шаар ичинде — 150 сом', 'Within the city — 150 KGS'],
+  outsideZone: ['За город — 200 сом', 'Шаардын сыртында — 200 сом', 'Outside the city — 200 KGS'],
+  zonePending: ['Выберите зону', 'Аймакты тандаңыз', 'Choose an area'],
+  deliveryPending: ['+ стоимость доставки', '+ жеткирүү акысы', '+ delivery fee'],
+  foodSubtotal: ['Сумма блюд', 'Тамактардын суммасы', 'Food subtotal'],
+  sendWhatsapp: ['Заказать через WhatsApp', 'WhatsApp аркылуу заказ берүү', 'Order via WhatsApp'],
+  whatsappHint: ['Откроется WhatsApp с заказом. Нажмите «Отправить», чтобы ресторан получил сообщение.', 'Заказ менен WhatsApp ачылат. Ресторанга жөнөтүү үчүн «Жөнөтүү» баскычын басыңыз.', 'WhatsApp will open with your order. Tap Send so the restaurant receives it.'],
+  futureTime: ['Укажите будущее время доставки.', 'Жеткирүүнүн келечектеги убактысын көрсөтүңүз.', 'Choose a future delivery time.'],
+  phoneError: ['Укажите телефон: от 7 до 15 цифр.', 'Телефонду жазыңыз: 7ден 15ке чейин цифра.', 'Enter a phone number with 7 to 15 digits.'],
+  fieldError: ['Заполните это поле.', 'Бул талааны толтуруңуз.', 'Please fill out this field.']
+};
+for (const [key, values] of Object.entries(orderWords)) {
+  ['ru', 'kg', 'en'].forEach((lang, index) => { I18N[lang][key] = values[index]; });
+}
+
+function orderSubtotal() {
+  return cartData().reduce((sum, item) => sum + item.quantity * item.dish.price, 0);
+}
+function selectedDeliveryFee() {
+  const zone = $('#deliveryZone').value;
+  return Object.prototype.hasOwnProperty.call(orderConfig.deliveryFees, zone)
+    ? orderConfig.deliveryFees[zone] : null;
+}
+function renderOrderSummary() {
+  const isDelivery = orderMode === 'delivery';
+  const hasItems = cartData().length > 0;
+  const fee = selectedDeliveryFee();
+  const known = fee !== null;
+  const subtotal = orderSubtotal();
+  $('#deliveryForm').classList.toggle('hidden', !isDelivery || !hasItems);
+  $('#restaurantInfo').classList.toggle('hidden', isDelivery || !hasItems);
+  $('#checkoutBtn').classList.toggle('hidden', !isDelivery);
+  $('#checkoutBtn').disabled = !hasItems || hasUnavailableItems() || !deliveryScheduleAllowsOrder();
+  $('#cartAvailabilityWarning').classList.toggle('hidden', !hasUnavailableItems());
+  const scheduleBlocked = !deliveryScheduleAllowsOrder();
+  $('#deliveryScheduleWarning').classList.toggle('hidden', !isDelivery || !scheduleBlocked);
+  $('#deliveryScheduleWarning').textContent = t($('#deliveryTime').value === 'scheduled' ? 'scheduledClosed' : 'deliveryClosed');
+  $('#checkoutBtn').textContent = t('sendWhatsapp');
+  $('#checkoutNote').classList.toggle('hidden', !isDelivery);
+  $('#deliveryFeeRow').classList.toggle('hidden', !isDelivery);
+  $('#deliveryFee').textContent = known ? money(fee) : t('zonePending');
+  const cityOption = $('#deliveryZone').querySelector('[value=city]');
+  const outsideOption = $('#deliveryZone').querySelector('[value=outside]');
+  if (cityOption) cityOption.textContent = t('cityZone').replace(/150/, String(orderConfig.deliveryFees.city));
+  if (outsideOption) outsideOption.textContent = t('outsideZone').replace(/200/, String(orderConfig.deliveryFees.outside));
+  $('#orderTotal').textContent = isDelivery && !known ? `${money(subtotal)} ${t('deliveryPending')}` : money(subtotal + (isDelivery ? fee || 0 : 0));
+  $('#paymentInstructions').textContent = t('paymentAfterOrder');
+  $$('[data-order-mode]').forEach(button => {
+    const active = button.dataset.orderMode === orderMode;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  $$('[data-i18n-placeholder]').forEach(input => { input.placeholder = t(input.dataset.i18nPlaceholder); });
+  $$('[data-i18n-aria]').forEach(element => { element.setAttribute('aria-label', t(element.dataset.i18nAria)); });
+  renderMobileExperience();
+  $('#closeCart').setAttribute('aria-label', state.lang === 'ru' ? 'Закрыть корзину' : state.lang === 'kg' ? 'Себетти жабуу' : 'Close cart');
+}
+
+function whatsappOrderMessage(form) {
+  const fields = new FormData(form);
+  const val = name => String(fields.get(name) || '').trim();
+  // Restaurant receives a consistent Russian order regardless of the menu language.
+  const lines = ['ALTYN — заказ на доставку', '', 'Блюда:'];
+  cartData().forEach(item => lines.push(`• ${item.dish.name.ru} × ${item.quantity} — ${item.dish.price * item.quantity} сом`));
+  lines.push('', `Сумма блюд: ${orderSubtotal()} сом`);
+  const fee = selectedDeliveryFee();
+  const zoneLabel = $('#deliveryZone').value === 'city' ? 'по городу' : 'за город';
+  lines.push(`Доставка (${zoneLabel}): ${fee} сом`, `Итого: ${orderSubtotal() + fee} сом`);
+  lines.push('', `Имя: ${val('customerName')}`, `Телефон: ${val('customerPhone')}`, `Адрес: ${val('address')}`);
+  for (const [key, label] of [['apartment', 'Квартира / офис'], ['entrance', 'Подъезд'], ['floor', 'Этаж'], ['intercom', 'Домофон']]) {
+    if (val(key)) lines.push(`${label}: ${val(key)}`);
+  }
+  lines.push(`Время доставки: ${val('deliveryTime') === 'scheduled' ? val('requestedTime').replace('T', ' ') + ' (Бишкек, UTC+6)' : 'как можно скорее'}`);
+  if (val('comment')) lines.push(`Комментарий: ${val('comment')}`);
+  lines.push('', 'Оплата: картой / переводом. Прошу отправить номер карты или QR-код для оплаты.', 'Пожалуйста, подтвердите заказ и время доставки.');
+  return lines.join('\n');
+}
+
+function setupOrdering() {
+  $$('[data-order-mode]').forEach(button => {
+    button.onclick = () => selectOrderMode(button.dataset.orderMode);
+  });
+  const form = $('#deliveryForm');
+  form.addEventListener('input', event => event.target.setCustomValidity(''));
+  $('#deliveryTime').onchange = () => {
+    const scheduled = $('#deliveryTime').value === 'scheduled';
+    $('#scheduledField').classList.toggle('hidden', !scheduled);
+    form.elements.requestedTime.required = scheduled;
+    form.elements.requestedTime.disabled = !scheduled;
+    form.elements.requestedTime.setCustomValidity('');
+    renderOrderSummary();
+  };
+  form.elements.requestedTime.addEventListener('input', renderOrderSummary);
+  $('#deliveryTime').onchange();
+  $('#deliveryZone').onchange = renderOrderSummary;
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (orderMode !== 'delivery' || !cartData().length || selectedDeliveryFee() === null || hasUnavailableItems() || !deliveryScheduleAllowsOrder()) { renderOrderSummary(); return; }
+    for (const name of ['customerName', 'address']) {
+      if (!form.elements[name].value.trim()) form.elements[name].setCustomValidity(t('fieldError'));
+    }
+    const digits = form.elements.customerPhone.value.replace(/\D/g, '');
+    form.elements.customerPhone.setCustomValidity(digits.length < 7 || digits.length > 15 || !/^[+0-9()\s.\-]+$/.test(form.elements.customerPhone.value) ? t('phoneError') : '');
+    if ($('#deliveryTime').value === 'scheduled') {
+      const requested = requestedDeliveryDate().getTime();
+      form.elements.requestedTime.setCustomValidity(!Number.isFinite(requested) || requested <= Date.now() ? t('futureTime') : '');
+    }
+    if (!form.reportValidity()) return;
+    const number = String(orderConfig.whatsappNumber || '').replace(/\D/g, '');
+    if (!number) return;
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(whatsappOrderMessage(form))}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+    // Keep the cart: opening WhatsApp does not confirm an order was sent.
+  });
+  renderOrderSummary();
+}
+
+/* MOBILE EXPERIENCE AND RESTAURANT INFORMATION */
+const restaurantConfig = window.ALTYN_RESTAURANT_CONFIG || { dishes: {} };
+const mobileWords = {
+  chooseModeTitle: ['Как будете заказывать?', 'Кантип заказ бересиз?', 'How would you like to order?'],
+  chooseModeText: ['Выберите удобный вариант. Его можно изменить в любой момент.', 'Ыңгайлуу вариантты тандаңыз. Аны каалаган убакта өзгөртө аласыз.', 'Choose an option. You can change it at any time.'],
+  deliveryModeText: ['Привезём по вашему адресу. Заказ через WhatsApp.', 'Дарегиңизге жеткиребиз. Заказ WhatsApp аркылуу.', 'Delivered to your address. Order via WhatsApp.'],
+  restaurantModeText: ['Выберите блюда и покажите список официанту.', 'Тамактарды тандап, тизмени официантка көрсөтүңүз.', 'Choose dishes and show your list to the waiter.'],
+  changeMode: ['Изменить', 'Өзгөртүү', 'Change'],
+  myList: ['Мой список', 'Менин тизмем', 'My list'],
+  addressDetails: ['Уточнить адрес: квартира, подъезд, этаж', 'Даректи тактоо: батир, кире бериш, кабат', 'Address details: apartment, entrance, floor'],
+  available: ['В наличии', 'Бар', 'Available'],
+  soldOut: ['Закончилось', 'Түгөндү', 'Sold out'],
+  unavailableCart: ['В корзине есть недоступное блюдо. Удалите его, чтобы продолжить.', 'Себетте жок тамак бар. Улантуу үчүн аны өчүрүңүз.', 'An item in your cart is unavailable. Remove it to continue.'],
+  restaurantContacts: ['Адрес и контакты', 'Дарек жана байланыш', 'Location and contact'],
+  openingHours: ['Часы работы ресторана', 'Ресторандын иш убактысы', 'Restaurant opening hours'],
+  deliveryHoursTitle: ['Приём заказов на доставку', 'Жеткирүүгө заказ кабыл алуу', 'Delivery ordering hours'],
+  hoursUnknown: ['Время работы уточните по телефону или в WhatsApp.', 'Иш убактысын телефон же WhatsApp аркылуу тактаңыз.', 'Please confirm opening hours by phone or WhatsApp.'],
+  addressUnknown: ['Адрес уточните у персонала или в WhatsApp.', 'Даректи кызматкерлерден же WhatsApp аркылуу тактаңыз.', 'Ask the staff or contact us on WhatsApp for the address.'],
+  callRestaurant: ['Позвонить', 'Чалуу', 'Call'],
+  openMap: ['Открыть в 2ГИС', '2ГИСтен ачуу', 'Open in 2GIS'],
+  contactWhatsapp: ['Написать в WhatsApp', 'WhatsApp аркылуу жазуу', 'Contact on WhatsApp'],
+  restaurantOpen: ['Ресторан открыт', 'Ресторан ачык', 'Restaurant is open'],
+  restaurantClosed: ['Ресторан закрыт', 'Ресторан жабык', 'Restaurant is closed'],
+  deliveryOpen: ['Доставка: заказы принимаются', 'Жеткирүүгө заказ кабыл алынууда', 'Delivery orders are open'],
+  deliveryClosed: ['Доставка сейчас закрыта. Выберите время в часы приёма заказов.', 'Жеткирүү азыр жабык. Заказ кабыл алуу убактысын тандаңыз.', 'Delivery is closed now. Choose a time within ordering hours.'],
+  deliveryHoursUnknown: ['Время приёма доставки уточните в WhatsApp.', 'Жеткирүүгө заказ кабыл алуу убактысын WhatsApp аркылуу тактаңыз.', 'Confirm delivery ordering hours on WhatsApp.'],
+  scheduledClosed: ['На выбранное время доставка закрыта. Выберите время из расписания.', 'Тандалган убакта жеткирүү жабык. Графиктен башка убакыт тандаңыз.', 'Delivery is closed at the selected time. Choose a time within the schedule.'],
+  dayOff: ['Выходной', 'Эс алуу күнү', 'Closed'],
+  spiceLabel: ['Острота', 'Ачуулугу', 'Spiciness'],
+  spiceUnknown: ['Уточните у официанта', 'Официанттан тактаңыз', 'Ask your waiter'],
+  ingredientsUnknown: ['Точный состав уточните у официанта или в WhatsApp.', 'Так курамын официанттан же WhatsApp аркылуу тактаңыз.', 'Ask your waiter or contact us on WhatsApp for exact ingredients.'],
+  allergensLabel: ['Аллергены', 'Аллергендер', 'Allergens'],
+  allergensUnknown: ['Данные не указаны. Сообщите персоналу о пищевой аллергии до заказа.', 'Маалымат көрсөтүлгөн эмес. Заказдан мурун кызматкерлерге тамак-аш аллергияңыз жөнүндө айтыңыз.', 'Information is not provided. Tell the staff about any food allergies before ordering.'],
+  nonSpicy: ['Не острое', 'Ачуу эмес', 'Not spicy'],
+  mildSpicy: ['Немного острое', 'Бир аз ачуу', 'Mild'],
+  hotSpicy: ['Острое', 'Ачуу', 'Hot'],
+  verySpicy: ['Очень острое', 'Өтө ачуу', 'Very hot']
+};
+for (const [key, values] of Object.entries(mobileWords)) {
+  ['ru', 'kg', 'en'].forEach((lang, index) => { I18N[lang][key] = values[index]; });
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function dishInfo(id) { return restaurantConfig.dishes?.[id] || {}; }
+function isDishAvailable(id) { return dishInfo(id).available !== false; }
+function hasUnavailableItems() { return cartData().some(item => !isDishAvailable(item.dish.id)); }
+function localizedInfo(value, fallback) {
+  return typeof value === 'string' && value.trim() ? value : value?.[state.lang] || fallback;
+}
+function optimizedImage(source, width) {
+  try {
+    const url = new URL(source);
+    if (url.hostname === 'images.unsplash.com') {
+      url.searchParams.set('w', String(width));
+      url.searchParams.set('q', '70');
+      url.searchParams.set('auto', 'format');
+      return url.href;
+    }
+  } catch {}
+  return source;
+}
+function renderDishFacts(dish) {
+  const info = dishInfo(dish.id);
+  $('#modalIngredients').textContent = localizedInfo(info.ingredients, t('ingredientsUnknown'));
+  $('#modalAllergens').textContent = localizedInfo(info.allergens, t('allergensUnknown'));
+  const spiceKeys = ['nonSpicy', 'mildSpicy', 'hotSpicy', 'verySpicy'];
+  $('#modalSpiciness').textContent = Number.isInteger(info.spiciness) && spiceKeys[info.spiciness]
+    ? t(spiceKeys[info.spiciness]) : t('spiceUnknown');
+  $('#modalAvailability').textContent = t(isDishAvailable(dish.id) ? 'available' : 'soldOut');
+  $('#modalAdd').disabled = !isDishAvailable(dish.id);
+  $('#modalAdd').textContent = t(isDishAvailable(dish.id) ? 'addToCart' : 'soldOut');
+}
+
+function readSavedMode() {
+  try { return sessionStorage.getItem('altynOrderMode'); } catch { return null; }
+}
+function selectOrderMode(mode) {
+  if (!['delivery', 'restaurant'].includes(mode)) return;
+  orderMode = mode;
+  try { sessionStorage.setItem('altynOrderMode', mode); } catch {}
+  const chooser = $('#modeChooser');
+  if (chooser.open) chooser.close();
+  renderOrderSummary();
+}
+function restaurantDateParts(date) {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+    timeZone: restaurantConfig.timezone || 'Asia/Bishkek',
+    weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+  }).formatToParts(date).map(part => [part.type, part.value]));
+  const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(parts.weekday);
+  return { day, minute: Number(parts.hour) * 60 + Number(parts.minute) };
+}
+function minutesFromTime(value) {
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(value)) return null;
+  const [hour, minute] = value.split(':').map(Number);
+  return hour * 60 + minute;
+}
+function scheduleIntervals(schedule, day) {
+  const ranges = schedule?.[day];
+  if (!Array.isArray(ranges)) return null;
+  if (ranges.some(pair => !Array.isArray(pair) || pair.length !== 2 || pair.some(time => minutesFromTime(time) === null))) return null;
+  return ranges.map(([start, end]) => [minutesFromTime(start), minutesFromTime(end)]);
+}
+function scheduleIsOpen(schedule, date = new Date()) {
+  if (!schedule || !Number.isFinite(date.getTime())) return null;
+  const { day, minute } = restaurantDateParts(date);
+  const today = scheduleIntervals(schedule, day);
+  const yesterday = scheduleIntervals(schedule, (day + 6) % 7);
+  const currentOpen = today?.some(([start, end]) => end > start ? minute >= start && minute < end : end < start && minute >= start);
+  const overnightOpen = yesterday?.some(([start, end]) => end < start && minute < end);
+  if (currentOpen || overnightOpen) return true;
+  return today === null || yesterday === null ? null : false;
+}
+function effectiveDeliverySchedule() { return restaurantConfig.deliveryHours; }
+function requestedDeliveryDate() {
+  const form = $('#deliveryForm');
+  if (form.elements.deliveryTime.value !== 'scheduled') return new Date();
+  // The requested wall-clock time is explicitly Bishkek time, independent of the customer's device.
+  return new Date(form.elements.requestedTime.value + '+06:00');
+}
+function deliveryScheduleAllowsOrder() {
+  return scheduleIsOpen(effectiveDeliverySchedule(), requestedDeliveryDate()) !== false;
+}
+function renderSchedule(id, schedule) {
+  const list = $(id);
+  list.replaceChildren();
+  if (!schedule) {
+    const text = document.createElement('p'); text.textContent = t('hoursUnknown'); list.append(text); return;
+  }
+  const dayNames = {
+    ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    kg: ['Жк', 'Дш', 'Шш', 'Шр', 'Бш', 'Жм', 'Иш'],
+    en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  };
+  [1,2,3,4,5,6,0].forEach(day => {
+    const row = document.createElement('div');
+    const name = document.createElement('dt'); name.textContent = dayNames[state.lang][day];
+    const times = document.createElement('dd');
+    const intervals = scheduleIntervals(schedule, day);
+    times.textContent = intervals === null ? t('hoursUnknown') : intervals.length ? schedule[day].map(pair => pair.join('–')).join(', ') : t('dayOff');
+    row.append(name, times); list.append(row);
+  });
+}
+function renderMobileExperience() {
+  $('#currentMode').textContent = t(orderMode === 'delivery' ? 'delivery' : 'restaurant');
+  const count = cartData().reduce((sum, item) => sum + item.quantity, 0);
+  $('#floatingCount').textContent = count;
+  $('#floatingCartLabel').textContent = t(orderMode === 'delivery' ? 'cart' : 'myList');
+  const fee = selectedDeliveryFee();
+  $('#floatingTotal').textContent = money(orderSubtotal() + (orderMode === 'delivery' && fee !== null ? fee : 0));
+  const restaurantOpen = scheduleIsOpen(restaurantConfig.hours);
+  $('#restaurantStatus').textContent = t(restaurantOpen === null ? 'hoursUnknown' : restaurantOpen ? 'restaurantOpen' : 'restaurantClosed');
+  const deliveryOpen = scheduleIsOpen(effectiveDeliverySchedule());
+  $('#deliveryStatus').textContent = t(deliveryOpen === null ? 'deliveryHoursUnknown' : deliveryOpen ? 'deliveryOpen' : 'deliveryClosed');
+  $('#deliveryStatus').classList.toggle('closed-status', deliveryOpen === false);
+  $('#restaurantAddress').textContent = localizedInfo(restaurantConfig.address, t('addressUnknown'));
+  let mapUrl = '';
+  try { const url = new URL(restaurantConfig.mapUrl); if (url.protocol === 'https:') mapUrl = url.href; } catch {}
+  $('#restaurantMap').classList.toggle('hidden', !mapUrl);
+  if (mapUrl) $('#restaurantMap').href = mapUrl;
+  $('#restaurantPhone').href = 'tel:' + String(restaurantConfig.phone || orderConfig.whatsappNumber).replace(/[^+\d]/g, '');
+  $('#contactWhatsapp').href = 'https://wa.me/' + String(orderConfig.whatsappNumber).replace(/\D/g, '');
+  renderSchedule('#restaurantHours', restaurantConfig.hours);
+  renderSchedule('#deliveryHours', effectiveDeliverySchedule());
+}
+function setupMobileExperience() {
+  const saved = readSavedMode();
+  if (['delivery', 'restaurant'].includes(saved)) selectOrderMode(saved);
+  else $('#modeChooser').showModal();
+  $('#changeOrderMode').onclick = () => $('#modeChooser').showModal();
+  $$('[data-choose-mode]').forEach(button => { button.onclick = () => selectOrderMode(button.dataset.chooseMode); });
+  // Refresh at minute boundaries closely enough for closing-time changes on an open page.
+  window.setInterval(renderOrderSummary, 30000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) renderOrderSummary();
+  });
+  renderMobileExperience();
+}
+
 applyLanguage();
+setupOrdering();
+setupMobileExperience();
+
+
+// Poll shared settings while the page is visible. Existing delivery fields are preserved.
+let liveRefreshBusy = false;
+async function refreshSharedMenu() {
+  if (!window.ALTYN_LIVE_SERVER || document.hidden || liveRefreshBusy) return;
+  liveRefreshBusy = true;
+  try {
+    const response = await fetch('/api/public', { cache: 'no-store', signal: AbortSignal.timeout(12000) });
+    if (!response.ok) throw Error('menu unavailable');
+    const data = await response.json();
+    if (data.revision !== window.ALTYN_MENU_REVISION) {
+      applyLiveData(data);
+      dishes.splice(0, dishes.length, ...window.ALTYN_LIVE_MENU);
+      Object.assign(orderConfig, data.order);
+      Object.assign(restaurantConfig, window.ALTYN_RESTAURANT_CONFIG);
+      if (state.modalId && !dishes.some(dish => dish.id === state.modalId)) closeDish();
+      applyLanguage();
+      const notice = $('#menuUpdateNotice');
+      notice.textContent = state.lang === 'ru' ? 'Меню обновилось. Проверьте блюда и итоговую сумму перед заказом.' : state.lang === 'kg' ? 'Меню жаңырды. Заказдан мурун тамактарды жана жалпы сумманы текшериңиз.' : 'The menu has changed. Check your items and total before ordering.';
+      notice.classList.remove('hidden');
+    }
+  } catch {
+    // Keep browsing possible; the operator confirms the WhatsApp order and prices.
+    const notice = $('#menuUpdateNotice');
+    notice.textContent = state.lang === 'ru' ? 'Не удалось обновить меню. Наличие и цены уточните в WhatsApp.' : state.lang === 'kg' ? 'Меню жаңырган жок. Тамактардын бар экенин жана бааларын WhatsApp аркылуу тактаңыз.' : 'Could not refresh the menu. Confirm availability and prices on WhatsApp.';
+    notice.classList.remove('hidden');
+  } finally { liveRefreshBusy = false; }
+}
+if (window.ALTYN_LIVE_SERVER) {
+  window.setInterval(refreshSharedMenu, 30000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshSharedMenu(); });
+}
