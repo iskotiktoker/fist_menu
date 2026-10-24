@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0b">
+  <title>ALTYN Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="menuLoadStatus" class="menu-load-status" role="status"><p>Загружаем меню…</p></div>
+<p id="menuUpdateNotice" class="menu-update-notice hidden" role="status"></p>
+<dialog id="modeChooser" class="mode-chooser" aria-labelledby="modeChooserTitle" aria-describedby="modeChooserText">
+  <span class="chooser-brand">ALTYN</span>
+  <h2 id="modeChooserTitle" data-i18n="chooseModeTitle">Как будете заказывать?</h2>
+  <p id="modeChooserText" data-i18n="chooseModeText">Выберите удобный вариант. Его можно изменить в любой момент.</p>
+  <button type="button" data-choose-mode="restaurant"><span aria-hidden="true">🍽</span><span><b data-i18n="restaurant">В ресторане</b><small data-i18n="restaurantModeText">Выберите блюда и покажите список официанту.</small></span></button>
+  <button type="button" data-choose-mode="delivery"><span aria-hidden="true">🛵</span><span><b data-i18n="delivery">Доставка</b><small data-i18n="deliveryModeText">Привезём по вашему адресу. Заказ через WhatsApp.</small></span></button>
+</dialog>
+
+<header class="topbar">
+
+  <a class="brand" href="#top">
+    <span class="logo">A</span>
+
+    <span>
+      <b>ALTYN</b>
+      <small>RESTAURANT MENU</small>
+    </span>
+  </a>
+
+  <div class="top-actions">
+
+    <div class="langs">
+      <button data-lang="kg">KG</button>
+      <button class="active" data-lang="ru">RU</button>
+      <button data-lang="en">EN</button>
+    </div>
+
+    <button class="cart-top" id="openCart">
+      🛒
+      <span id="cartCount">0</span>
+    </button>
+
+  </div>
+
+</header>
+
+
+<main id="top">
+  <div class="service-strip container">
+    <button type="button" id="changeOrderMode"><span id="currentMode"></span><span class="change-mode-label" data-i18n="changeMode">Изменить</span></button>
+    <span id="restaurantStatus" role="status"></span>
+  </div>
+
+  <section class="hero container">
+
+    <div class="hero-text">
+
+      <p class="eyebrow" data-i18n="eyebrow">
+        ВКУС, КОТОРЫЙ ЗАПОМИНАЕТСЯ
+      </p>
+
+      <h1>
+        ALTYN<br>
+        MENU
+      </h1>
+
+      <p class="lead" data-i18n="lead">
+        Современное меню с любимыми блюдами, салатами,
+        десертами, напитками и выгодными комбо.
+      </p>
+
+      <div class="hero-info">
+        
+        
+        <span>🍽 <b id="dishCountHero">64</b></span>
+      </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <img id="heroImage" alt="Фирменное блюдо" fetchpriority="high" decoding="async" width="800" height="600">
+
+      <div class="hero-overlay">
+
+        <span class="badge" data-i18n="hit">
+          ХИТ
+        </span>
+
+        <h2 id="heroName"></h2>
+
+        <div class="hero-price">
+
+          <b id="heroPrice"></b>
+
+          <button id="heroAdd">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="controls container">
+
+    <div class="search">
+
+      <span>⌕</span>
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Поиск блюд..."
+      >
+
+      <button id="clearSearch">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="filters">
+
+      <button
+        class="active"
+        data-filter="all"
+        data-i18n="all">
+        Все
+      </button>
+
+      <button
+        data-filter="popular"
+        data-i18n="popular">
+        Популярное
+      </button>
+
+      <button
+        data-filter="favorites"
+        data-i18n="favorites">
+        Избранное
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="menu container">
+
+    <aside class="sidebar">
+
+      <p data-i18n="categories">
+        Категории
+      </p>
+
+      <div id="categoryList"></div>
+
+    </aside>
+
+
+    <div class="menu-main">
+
+      <div
+        class="mobile-categories"
+        id="mobileCategories">
+      </div>
+
+
+      <div class="section-title">
+
+        <h2 data-i18n="menu">
+          Меню
+        </h2>
+
+        <span id="resultsCount"></span>
+
+      </div>
+
+
+      <div
+        class="grid"
+        id="menuGrid">
+      </div>
+
+
+      <div
+        class="empty hidden"
+        id="emptyState">
+
+        <div>🍽</div>
+
+        <h3 data-i18n="nothing">
+          Ничего не найдено
+        </h3>
+
+        <p data-i18n="tryAgain">
+          Попробуйте другой поиск или категорию.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="features container">
+
+    <article>
+
+      <span>⚡</span>
+
+      <div>
+
+        <h3 data-i18n="fast">
+          Быстро
+        </h3>
+
+        <p data-i18n="fastText">
+          Большинство заказов готовим за 15–25 минут.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article>
+
+      <span>🥬</span>
+
+      <div>
+
+        <h3 data-i18n="fresh">
+          Свежие продукты
+        </h3>
+
+        <p data-i18n="freshText">
+          Готовим из свежих ингредиентов каждый день.
+        </p>
+
+      </div>
+
+    </article>
+
+
+    <article>
+
+      <span>💳</span>
+
+      <div>
+
+        <h3 data-i18n="payment">
+          Удобная оплата
+        </h3>
+
+        <p data-i18n="paymentText">
+          Реквизиты для оплаты доставки пришлём в WhatsApp.
+        </p>
+
+      </div>
+
+    </article>
+
+  </section>
+
+</main>
+<footer class="restaurant-footer container">
+  <section class="contact-panel">
+    <p class="eyebrow">ALTYN</p>
+    <h2 data-i18n="restaurantContacts">Адрес и контакты</h2>
+    <p id="restaurantAddress"></p>
+    <div class="contact-actions">
+      <a id="restaurantMap" class="contact-link hidden" target="_blank" rel="noopener noreferrer" data-i18n="openMap">Открыть в 2ГИС</a>
+      <a id="restaurantPhone" class="contact-link" data-i18n="callRestaurant">Позвонить</a>
+      <a id="contactWhatsapp" class="contact-link" target="_blank" rel="noopener noreferrer" data-i18n="contactWhatsapp">Написать в WhatsApp</a>
+    </div>
+  </section>
+  <section class="hours-panel"><h3 data-i18n="openingHours">Часы работы ресторана</h3><dl id="restaurantHours"></dl></section>
+  <section class="hours-panel"><h3 data-i18n="deliveryHoursTitle">Приём заказов на доставку</h3><dl id="deliveryHours"></dl></section>
+<a class="staff-link" href="admin.html">Сотрудникам</a>
+</footer>
+
+
+
+<button
+  class="floating-cart"
+  id="floatingCart">
+
+  🛒
+
+  <span id="floatingCartLabel" data-i18n="cart">Корзина</span>
+  <span id="floatingCount" class="floating-count">0</span>
+
+  <b id="floatingTotal">
+    0 сом
+  </b>
+
+</button>
+
+
+
+<div
+  class="overlay"
+  id="dishOverlay">
+
+  <div class="modal">
+
+    <button
+      class="close"
+      id="closeDish">
+      ×
+    </button>
+
+
+    <img
+      id="modalImage"
+      alt="">
+
+
+    <div class="modal-content">
+
+      <span
+        class="category-label"
+        id="modalCategory">
+      </span>
+
+
+      <div class="modal-title-row">
+
+        <h2 id="modalName"></h2>
+
+        <button
+          class="fav big"
+          id="modalFav">
+          ♡
+        </button>
+
+      </div>
+
+
+      <p id="modalDescription"></p>
+
+
+      <div class="ingredients">
+
+        <b data-i18n="ingredients">
+          Состав
+        </b>
+
+        <p id="modalIngredients"></p>
+
+      </div>
+
+
+      <section class="dish-facts">
+        <span id="modalAvailability" class="availability-label"></span>
+        <div><b data-i18n="spiceLabel">Острота</b><p id="modalSpiciness"></p></div>
+        <div><b data-i18n="allergensLabel">Аллергены</b><p id="modalAllergens"></p></div>
+      </section>
+      <div class="stats">
+
+        <span>
+
+          <small data-i18n="weight">
+            Вес
+          </small>
+
+          <b id="modalWeight"></b>
+
+        </span>
+
+
+        <span>
+
+          <small data-i18n="calories">
+            Ккал
+          </small>
+
+          <b id="modalCalories"></b>
+
+        </span>
+
+
+        <span>
+
+          <small data-i18n="time">
+            Время
+          </small>
+
+          <b id="modalTime"></b>
+
+        </span>
+
+      </div>
+
+
+      <div class="modal-bottom">
+
+        <strong id="modalPrice"></strong>
+
+        <button
+          class="primary"
+          id="modalAdd"
+          data-i18n="addToCart">
+
+          Добавить в корзину
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div
+  class="drawer-overlay"
+  id="cartOverlay">
+
+  <aside class="cart-drawer">
+
+    <div class="cart-head">
+
+      <h2 data-i18n="cart">
+        Корзина
+      </h2>
+
+      <button
+        class="close"
+        id="closeCart">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="order-modes" role="group" data-i18n-aria="orderType">
+      <button type="button" class="active" data-order-mode="delivery" aria-pressed="true" data-i18n="delivery">Доставка</button>
+      <button type="button" data-order-mode="restaurant" aria-pressed="false" data-i18n="restaurant">В ресторане</button>
+    </div>
+    <div class="cart-scroll">
+      <div id="cartItems" class="cart-items"></div>
+      <section id="restaurantInfo" class="order-panel hidden">
+        <h3 data-i18n="waiterTitle">Покажите список официанту</h3>
+        <p data-i18n="waiterText">Официант примет заказ и уточнит пожелания. Список на сайте сам по себе не оформляет заказ.</p>
+      </section>
+      <form id="deliveryForm" class="order-panel">
+        <h3 data-i18n="deliveryDetails">Данные для доставки</h3>
+        <p id="deliveryStatus" class="delivery-status" role="status"></p>
+        <p class="form-hint" data-i18n="requiredHint">Поля со звёздочкой обязательны.</p>
+        <label><span data-i18n="customerName">Имя *</span><input name="customerName" autocomplete="name" required maxlength="80"></label>
+        <label><span data-i18n="customerPhone">Телефон *</span><input name="customerPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+996 ___ ___ ___" required maxlength="25"></label>
+        <label><span data-i18n="deliveryZone">Зона доставки *</span><select name="deliveryZone" id="deliveryZone" required><option value="" data-i18n="chooseZone">Выберите зону доставки</option><option value="city" data-i18n="cityZone">По городу — 150 сом</option><option value="outside" data-i18n="outsideZone">За город — 200 сом</option></select></label>
+        <label><span data-i18n="address">Улица и дом *</span><input name="address" autocomplete="street-address" required maxlength="200"></label>
+        <details class="address-details">
+          <summary data-i18n="addressDetails">Уточнить адрес: квартира, подъезд, этаж</summary>
+          <div class="form-pair">
+          <label><span data-i18n="apartment">Квартира / офис</span><input name="apartment" maxlength="30"></label>
+          <label><span data-i18n="entrance">Подъезд</span><input name="entrance" maxlength="20"></label>
+          <label><span data-i18n="floor">Этаж</span><input name="floor" maxlength="20"></label>
+          <label><span data-i18n="intercom">Домофон</span><input name="intercom" maxlength="30"></label>
+        </div>
+          </details>
+        <label><span data-i18n="deliveryTime">Когда доставить</span><select name="deliveryTime" id="deliveryTime"><option value="asap" data-i18n="asap">Как можно скорее</option><option value="scheduled" data-i18n="scheduled">К указанному времени</option></select></label>
+        <label id="scheduledField" class="hidden"><span data-i18n="requestedTime">Желаемые дата и время *</span><input name="requestedTime" type="datetime-local"></label>
+        <label><span data-i18n="comment">Комментарий к заказу</span><textarea name="comment" rows="3" maxlength="600" data-i18n-placeholder="commentHint" placeholder="Пожелания к блюдам, ориентир для курьера…"></textarea></label>
+        <section class="payment-panel">
+          <span class="payment-tag" data-i18n="qrOnly">Оплата картой / переводом</span>
+          <p id="paymentInstructions"></p>
+
+        </section>
+      </form>
+    </div>
+    <div class="cart-summary">
+      <p id="cartAvailabilityWarning" class="cart-warning hidden" role="alert" data-i18n="unavailableCart">В корзине есть недоступное блюдо. Удалите его, чтобы продолжить.</p>
+      <p id="deliveryScheduleWarning" class="cart-warning hidden" role="status"></p>
+      <div><span data-i18n="foodSubtotal">Сумма блюд</span><strong id="cartTotal">0 сом</strong></div>
+      <div id="deliveryFeeRow" class="fee-row"><span data-i18n="delivery">Доставка</span><span id="deliveryFee"></span></div>
+      <div id="orderTotalRow"><span data-i18n="total">Итого</span><strong id="orderTotal"></strong></div>
+      <button type="submit" form="deliveryForm" class="primary" id="checkoutBtn" data-i18n="sendWhatsapp">Заказать через WhatsApp</button>
+      <p class="checkout-note" id="checkoutNote" data-i18n="whatsappHint">Откроется WhatsApp с заказом. Нажмите «Отправить», чтобы ресторан получил сообщение.</p>
+    </div>
+
+  </aside>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script src="order-config.js"></script>
+<script src="restaurant-config.js"></script>
+<script src="menu-loader.js"></script>
+
+</body>
+</html>
