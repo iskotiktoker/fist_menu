@@ -2262,3 +2262,39 @@ button { min-height: 44px; }
 @media (max-width: 640px) {
   .grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* The menu keeps a phone layout on every screen, including laptops. */
+:root { --max: 520px; }
+body { max-width: 520px; width: 100%; margin-inline: auto; }
+.container { width: calc(100% - 22px); max-width: 498px; }
+.topbar { height: 68px; padding-inline: 11px; }
+.brand > span:last-child { display: none; }
+.langs button { min-width: 44px; min-height: 44px; font-size: 12px; }
+.hero { grid-template-columns: minmax(0,1fr); gap: 14px; padding-top: 16px; padding-bottom: 20px; }
+.hero-text { min-height: auto; padding: 10px 0; }
+.hero h1 { font-size: 44px; line-height: .95; }
+.hero-text .lead { font-size: 14px; margin-top: 12px; }
+.hero-info { margin-top: 12px; }
+.hero-card { min-height: 220px; max-height: 260px; border-radius: 22px; }
+.controls, .menu, .grid, .features, .restaurant-footer { grid-template-columns: minmax(0,1fr); }
+.sidebar { display: none; }
+.filters { justify-content: flex-start; }
+.mobile-categories { display:flex; position:sticky; top:68px; z-index:35; overflow-x:auto; padding:10px 0; background:rgba(10,10,11,.96); backdrop-filter:blur(16px); }
+.card { display:grid; grid-template-columns:42% minmax(0,1fr); min-height:166px; border-radius:17px; }
+.card-image { aspect-ratio:auto; height:100%; min-height:166px; }
+.card-body { padding:12px; }
+.card h3 { font-size:18px; overflow-wrap:anywhere; }
+.card-desc { font-size:12px; margin:7px 0 9px; height:36px; }
+.card-bottom { gap:6px; }
+.card-bottom strong { font-size:15px; }
+.details { display:none; }
+.card .add, .card .fav, .qty button, .remove { min-width:44px; min-height:44px; }
+.floating-cart, .floating-cart.show { left:50%; right:auto; width:min(calc(100% - 22px),498px); transform:translateX(-50%); justify-content:flex-start; }
+.overlay { align-items:flex-end; padding:0; }
+.modal { width:min(520px,100%); max-height:92dvh; grid-template-columns:minmax(0,1fr); overflow:auto; border-radius:24px 24px 0 0; }
+.modal > img { min-height:200px; height:200px; }
+.modal-content { padding:23px 18px 24px; }
+.modal-bottom { position:sticky; bottom:0; margin:20px -18px -24px; padding:12px 18px; background:rgba(17,17,19,.97); border-top:1px solid var(--line); }
+.drawer-overlay { justify-content:center; }
+.restaurant-footer { gap:12px; }
+.features { padding-top:32px; padding-bottom:32px; }

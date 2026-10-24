@@ -88,7 +88,7 @@ async function loadUsers(){
 }
 async function loadAudit(){
  const data=await api('/audit');const list=$('#auditList');list.replaceChildren();
- const labels={'dish.update':'Изменение блюда','dish.create':'Добавление блюда','settings.update':'Настройки ресторана','staff.create':'Добавление администратора','staff.update':'Изменение доступа сотрудника'};
+ const labels={'dish.update':'Изменение блюда','dish.create':'Добавление блюда','settings.update':'Настройки ресторана','staff.bootstrap':'Первоначальная настройка администратора','staff.create':'Добавление администратора','staff.update':'Изменение доступа сотрудника'};
  if(!data.audit.length)list.append(node('p','Изменений пока нет.'));
  data.audit.forEach(entry=>{const row=node('article',`${labels[entry.action]||entry.action} · ${entry.target}`,'audit-row');row.append(node('small',`${entry.by} · ${new Date(entry.at).toLocaleString('ru-RU',{timeZone:'Asia/Bishkek'})}`));list.append(row)});
 }

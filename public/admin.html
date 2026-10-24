@@ -7,7 +7,7 @@
   <p id="notice" role="status" aria-live="polite"></p>
   <section id="loginPanel" class="panel narrow">
     <h1>Вход для сотрудников</h1><p>Права определяются вашей учётной записью.</p>
-    <form id="loginForm"><label>Логин<input name="username" autocomplete="username" required maxlength="40"></label><label>Пароль<input name="password" type="password" autocomplete="current-password" required maxlength="128"></label><button class="primary" type="submit">Войти</button></form>
+    <form id="loginForm"><label>Email или логин<input name="username" autocomplete="username" required maxlength="254"></label><label>Пароль<input name="password" type="password" autocomplete="current-password" required maxlength="128"></label><button class="primary" type="submit">Войти</button></form>
     <p class="muted">Первый вход владельца настраивается через переменные окружения Netlify. Открытой регистрации нет.</p>
   </section>
   <section id="workspace" hidden>
@@ -32,7 +32,7 @@
     <section id="tab-users" hidden>
       <h1>Сотрудники</h1><p>Администраторы меняют только наличие блюд. Отключение доступа и смена пароля завершают их текущие сессии.</p>
       <div id="userList"></div>
-      <form id="createUserForm" class="panel narrow"><h2>Новый администратор</h2><label>Логин<input name="username" autocomplete="off" required pattern="[A-Za-z0-9_-]{3,40}" placeholder="Например, admin1"></label><label>Пароль (от 12 символов)<input name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required></label><button type="submit" class="primary">Создать учётную запись</button></form>
+      <form id="createUserForm" class="panel narrow"><h2>Новый администратор</h2><label>Email или логин<input name="username" autocomplete="off" required maxlength="254" placeholder="Например, admin@example.com"></label><label>Пароль (от 8 символов)<input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label><button type="submit" class="primary">Создать учётную запись</button></form>
       <p class="muted">Пароль владельца меняется через OWNER_PASSWORD_HASH в Netlify. Изменение хеша завершает его текущие сессии.</p>
     </section>
     <section id="tab-audit" hidden><div class="section-head"><h1>Последние изменения</h1><button id="reloadAudit">Обновить</button></div><div id="auditList"></div></section>
@@ -48,6 +48,6 @@
   <p class="muted">Состав и аллергены заполняйте по проверенным данным. Пустые поля предлагают клиенту уточнить сведения у персонала. Скрытие блюда можно отменить.</p>
   <button class="primary" type="submit">Сохранить блюдо</button>
 </form></dialog>
-<dialog id="passwordDialog"><form id="resetPasswordForm"><h2>Новый пароль сотрудника</h2><p id="resetUserLabel"></p><label>Пароль (от 12 символов)<input name="password" type="password" autocomplete="new-password" required minlength="12" maxlength="128"></label><div class="pair"><button type="button" id="closePasswordEditor">Отмена</button><button type="submit" class="primary">Сохранить</button></div></form></dialog>
+<dialog id="passwordDialog"><form id="resetPasswordForm"><h2>Новый пароль сотрудника</h2><p id="resetUserLabel"></p><label>Пароль (от 8 символов)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"></label><div class="pair"><button type="button" id="closePasswordEditor">Отмена</button><button type="submit" class="primary">Сохранить</button></div></form></dialog>
 <script src="admin.js"></script>
 </body></html>

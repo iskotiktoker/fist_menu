@@ -103,3 +103,29 @@ test('malformed input and unsafe images are rejected, logout revokes access',asy
  const result=await f.call('/logout','POST',{},s);assert.equal(result.status,200);assert.equal((await f.call('/session','GET',undefined,s)).status,401);
 });
 test('scrypt password verification matches and rejects wrong passwords',async()=>{assert(await verifyPassword(ownerPassword,ownerHash));assert(!await verifyPassword('wrong',ownerHash));});
+
+test('email logins and exactly eight-character passwords work, seven are rejected',async()=>{
+ const f=fixture(),owner=await f.login();let revision=(await f.call('/users','GET',undefined,owner)).data.revision;
+ assert.equal((await f.call('/users','POST',{revision,username:'admin@example.com',password:'Short77'},owner)).status,400);
+ assert.equal((await f.call('/users','POST',{revision,username:'Admin@Example.com',password:'Staff888'},owner)).status,201);
+ const staff=await f.login('ADMIN@EXAMPLE.COM','Staff888');
+ assert.equal((await f.call('/session','GET',undefined,staff)).data.username,'admin@example.com');
+ revision=(await f.call('/users','GET',undefined,owner)).data.revision;
+ assert.equal((await f.call('/users/admin%40example.com','PATCH',{revision,changes:{password:'Fresh888'}},owner)).status,200);
+ assert.equal((await f.call('/session','GET',undefined,staff)).status,401);
+ await f.login('admin@example.com','Fresh888');
+});
+
+test('initial admin is provisioned once, including in an existing store, and cannot be re-enabled by redeploy',async()=>{
+ const f=fixture();await f.call('/public');
+ const env={OWNER_LOGIN:'owner@example.com',OWNER_PASSWORD_HASH:await passwordHash('Owner888'),INITIAL_ADMIN_LOGIN:'admin@example.com',INITIAL_ADMIN_PASSWORD_HASH:await passwordHash('Staff888')};
+ const service=createService({store:f.store,seed,env});
+ async function call(path,method='GET',body,session){const res=await service(new Request('https://example.test/api'+path,{method,headers:{...(method==='GET'?{}:{Origin:'https://example.test','Content-Type':'application/json'}),...(session?{cookie:session.cookie,'x-csrf-token':session.csrf}:{})},body:body?JSON.stringify(body):undefined}));return {status:res.status,data:await res.json(),cookie:res.headers.get('set-cookie')?.split(';')[0]};}
+ const a=await call('/login','POST',{username:'ADMIN@example.com',password:'Staff888'});assert.equal(a.status,200);assert.equal(a.data.role,'admin');
+ const o=await call('/login','POST',{username:'Owner@Example.com',password:'Owner888'});assert.equal(o.status,200);const owner={cookie:o.cookie,csrf:o.data.csrf};
+ const users=await call('/users','GET',undefined,owner);assert.equal(users.data.users.length,1);
+ assert.equal((await call('/users/admin%40example.com','PATCH',{revision:users.data.revision,changes:{active:false}},owner)).status,200);
+ await call('/public');assert.equal((await call('/login','POST',{username:'admin@example.com',password:'Staff888'})).status,401);
+ assert.equal((await call('/users','GET',undefined,owner)).data.users.length,1);
+ assert.equal((await f.store.get('state')).initialAdminProvisioned,true);
+});

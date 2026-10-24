@@ -1897,7 +1897,7 @@ function cardHTML(dish) {
 
         src="${escapeHtml(optimizedImage(dish.image, 480))}"
         srcset="${escapeHtml(optimizedImage(dish.image, 240))} 240w, ${escapeHtml(optimizedImage(dish.image, 480))} 480w, ${escapeHtml(optimizedImage(dish.image, 720))} 720w"
-        sizes="(max-width: 640px) 42vw, (max-width: 900px) 48vw, 30vw"
+        sizes="(max-width: 520px) 42vw, 210px"
         decoding="async"
 
         alt="${escapeHtml(dish.name[state.lang])}"
@@ -2184,7 +2184,7 @@ function renderHero() {
 
   $("#heroImage").src = optimizedImage(dish.image, 800);
   $("#heroImage").srcset = [400, 800, 1200].map(width => `${optimizedImage(dish.image, width)} ${width}w`).join(", ");
-  $("#heroImage").sizes = "(max-width: 900px) 100vw, 50vw";
+  $("#heroImage").sizes = "(max-width: 520px) 100vw, 520px";
   $("#heroAdd").disabled = !isDishAvailable(dish.id);
   $("#heroAdd").setAttribute("aria-label", t(isDishAvailable(dish.id) ? "addToCart" : "soldOut"));
 
